@@ -24,7 +24,7 @@ blogRouter.use("/*", async (c, next) => {
     c.status(401);
     return c.json({ error: "Authorization header is missing" });
   } else {
-    const token = authHeader;
+    const token = authHeader.split(" ")[1];
     try {
       const decoded = await verify(token, c.env.JWT_SECRET);
       console.log("Decoded JWT:", decoded);
