@@ -20,12 +20,14 @@ export default function Publish() {
 
   const handlePublish = async () => {
     // Here you would typically send the data to a server
+    const token = localStorage.getItem("token");
     const response = await axios.post(`${BACKEND_URL}/api/v1/blog`, {
         title,
         content
     },{
+
         headers: {
-            Authorization: localStorage.getItem("token")
+              Authorization: `Bearer ${token}`,
         }
     });
     navigate(`/blog/${response.data.id}`)
