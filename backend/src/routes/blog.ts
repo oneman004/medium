@@ -26,6 +26,7 @@ blogRouter.use("/*", async (c, next) => {
   } else {
     const token = authHeader.split(" ")[1];
     try {
+    
       const decoded = await verify(token, c.env.JWT_SECRET);
       console.log("Decoded JWT:", decoded);
       //@ts-ignore
